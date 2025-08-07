@@ -1,0 +1,82 @@
+[
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "BDM TOOL",
+    "Identifier": "WA0001",
+    "Step Name": "company_description_generator_business",
+    "Input Token": 10,
+    "Output Token": 948
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "BDM TOOL",
+    "Identifier": "20250506_123917_DIgitalseo",
+    "Step Name": "Company Description Generator Business",
+    "Input Token": 2446,
+    "Output Token": 1363
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "BDM TOOL",
+    "Identifier": "20250506_123917_DIgitalseo",
+    "Step Name": "Initial Questionnaire",
+    "Input Token": 2682,
+    "Output Token": 1137
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "BDM TOOL",
+    "Identifier": "20250506_123917_DIgitalseo",
+    "Step Name": "Proposal Generation Prompt",
+    "Input Token": 4659,
+    "Output Token": 3516
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "BDM TOOL",
+    "Identifier": "20250506_123917_DIgitalseo",
+    "Step Name": "Proposal Generation Prompt",
+    "Input Token": 4659,
+    "Output Token": 4341
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "BDM TOOL",
+    "Identifier": "20250506_123917_DIgitalseo",
+    "Step Name": "PPT generation prompt",
+    "Input Token": 5473,
+    "Output Token": 4983
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "Time Sheet TOOL",
+    "Identifier": "Not Applicable",
+    "Step Name": "Description Recomendation",
+    "Input Token": 2669,
+    "Output Token": 235
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "KWR Tool",
+    "Identifier": "WA0007",
+    "Step Name": "Filter Pages",
+    "Input Token": 5338,
+    "Output Token": 3767
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "Time Sheet TOOL",
+    "Identifier": "Srikanth",
+    "Step Name": "Description Recomendation",
+    "Input Token": 2365,
+    "Output Token": 100
+  },
+  {
+    "Date & Time": "2025-05-15",
+    "Application Name": "KWR Tool",
+    "Identifier": "WA0007",
+    "Step Name": "Identify Pagetype",
+    "Input Token": 12611,
+    "Output Token": 1042
+  }
+]

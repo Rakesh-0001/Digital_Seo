@@ -1,0 +1,110 @@
+/* Make sidebar fixed width and main content scrollable */
+.main-content {
+  padding: 1.5rem;
+  height: calc(95vh - 56px); /* Adjust 56px if your Topbar is a different height */
+  width: 100%;
+  overflow-y: auto;
+  background: #181820; /* Match your theme */
+}
+
+.sidebar-link.active {
+  background: rgb(44,48,52) !important;
+  border-radius: 10px;
+  color: #fff !important;
+  font-weight: 600;
+}
+.sidebar-link {
+  color: #fff;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.25rem;
+  transition: background 0.2s;
+  font-size: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.sidebar-link:hover {
+  background: rgb(44,48,52);
+  color: #fff;
+  border-radius: 10px;
+
+}
+
+.form-select {
+  background-color:rgb(44,48,52) !important ;
+}
+
+
+/* Transparent Topbar styling for dark theme */
+.topbar-navbar {
+ background: #181820; /* Match your theme */
+  min-height: 60px;
+  /* border-bottom: 1px solid rgba(35,34,54,0.4); */
+  box-shadow: none !important;
+}
+
+.topbar-search .form-control {
+  background: #232236;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.topbar-search .input-group-text {
+  border-radius: 8px 0 0 8px;
+  border: none;
+  background: transparent;
+}
+
+.btn.btn-icon {
+  padding: 8px;
+  border: none;
+  color: #b3b3b3;
+  background: transparent;
+}
+
+.btn.btn-icon:hover, .btn.btn-icon:focus {
+  background: #191929;
+}
+
+.topbar-dropdown-toggle {
+  color: #fff !important;
+  background: none;
+  border: none;
+}
+
+.dropdown-menu-dark {
+  background-color: #232236;
+  border: 1px solid #39395a;
+  width: 100;
+}
+.custom-search-input::placeholder {
+  color: white;         /* black placeholder */
+  opacity: 1;          /* ensure visible */
+}
+
+.custom-search-input {
+  background: transparent !important;
+  color: #fff !important;
+}
+input::placeholder{
+   color: white;         /* black placeholder */
+  opacity: 1;          
+}
+
+.chart-card {
+  background: rgb(33,37,41);
+  border-radius: 16px;
+ height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  
+}
+.chart-wrapper {
+  width: 100%;
+  height: 350px;
+  /* make sure the canvas doesn't overflow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
