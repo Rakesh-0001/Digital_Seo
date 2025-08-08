@@ -108,3 +108,7 @@ input::placeholder{
   justify-content: center;
   padding-bottom: 20px;
 }
+
+input[type="date"]::placeholder {
+  color: #fff;
+}

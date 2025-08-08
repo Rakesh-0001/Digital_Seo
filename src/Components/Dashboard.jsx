@@ -22,15 +22,19 @@ function Dashboard() {
     const [selectedEndDate, setSelectedEndDate] = useState("");
     const [filteredData, setFilteredData] = useState([]);
     const [summary, setSummary] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
+        setLoading(true); // Start loading
         setFileError("");
         if (!file) return;
         if (!file.name.endsWith(".xlsx")) {
             setFileError("Please upload a valid .xlsx file");
             return;
         }
+
+        setLoading(true); // Start loading
 
         const reader = new FileReader();
         reader.onload = (evt) => {
@@ -41,35 +45,10 @@ function Dashboard() {
 
             setAllData(json);
 
-            // Project names
-            const projectSet = new Set();
-            json.forEach((row) => {
-                if (row["Application Name"]) {
-                    projectSet.add(row["Application Name"]);
-                }
-            });
-            setProjects([...projectSet]);
+            // ... your existing code ...
 
-            // Months and Dates
-            const monthSet = new Set();
-            const dateSet = new Set();
-            json.forEach((row) => {
-                const date = row["Date & Time"];
-                if (date) {
-                    dateSet.add(date);
-                    monthSet.add(date.slice(0, 7));
-                }
-            });
-            setMonths([...monthSet].sort());
-            setDates([...dateSet].sort());
-            // Reset filters
-            setSelectedProject("All Projects");
-            setSelectedMonth("");
-            setSelectedStartDate("");
-            setSelectedEndDate("");
-            setFilteredData(json);
-            calculateSummary(json);
         };
+        setLoading(false); // Stop loading when done    
         reader.readAsBinaryString(file);
     };
 
@@ -191,10 +170,17 @@ function Dashboard() {
                     type="file"
                     accept=".xlsx"
                     onChange={handleFileUpload}
-                    className="form-control  text-light border-0 mb-2 " style={{backgroundColor:'rgb(44,48,52)'}}
+                    className="form-control  text-light border-0 mb-2 " style={{ backgroundColor: 'rgb(44,48,52)' }}
                 />
                 {fileError && <div className="text-danger small">{fileError}</div>}
             </section>
+
+
+            {loading && (
+                <div className="text-warning small">
+                    Processing file, please wait...
+                </div>
+            )}
 
             <div className="col-12 mt-3">
                 <div className="card bg-dark text-light p-4 rounded-4" style={{ background: "#232229" }}>
@@ -219,7 +205,7 @@ function Dashboard() {
                             <div className="col-12 col-md-4 mb-3 mb-md-0">
                                 <label className="form-label text-light">Project Name</label>
                                 <select className="form-select  shadow-none text-light border-0"
-                                    style={{ height: "45px" , backgroundColor:'rgb(44,48,52)'}}
+                                    style={{ height: "45px", backgroundColor: 'rgb(44,48,52)' }}
                                     value={selectedProject}
                                     onChange={e => setSelectedProject(e.target.value)}>
                                     <option>All Projects</option>
@@ -238,7 +224,7 @@ function Dashboard() {
                                             <label className="form-label text-light">Choose Duation</label>
 
                                             <select className="form-select  shadow-none text-light border-0"
-                                                style={{ height: "45px" , backgroundColor:'rgb(44,48,52)' }}
+                                                style={{ height: "45px", backgroundColor: 'rgb(44,48,52)' }}
                                                 value={selectedMonth}
                                                 onChange={e => setSelectedMonth(e.target.value)}>
                                                 <option value="">Choose Duation</option>
@@ -249,7 +235,7 @@ function Dashboard() {
                                                 ))}
                                                 <option value="last7">Last 7 Days</option>
                                                 <option value="lastMonth">Last Month</option>
-                                                
+
                                             </select>
                                         </div>
                                         {/* Start Date */}
@@ -263,8 +249,8 @@ function Dashboard() {
                                                 min={dates[0] || ""}
                                                 max={dates[dates.length - 1] || ""}
                                                 onChange={handleStartDateChange}
-                                                style={{ height: "45px" ,backgroundColor:'rgb(44,48,52)' }}
-                                                
+                                                style={{ height: "45px", backgroundColor: 'rgb(44,48,52)' }}
+
                                             />
                                         </div>
                                         {/* End Date */}
@@ -278,7 +264,7 @@ function Dashboard() {
                                                 min={dates[0] || ""}
                                                 max={dates[dates.length - 1] || ""}
                                                 onChange={handleEndDateChange}
-                                                style={{ height: "45px",backgroundColor:'rgb(44,48,52)' }}
+                                                style={{ height: "45px", backgroundColor: 'rgb(44,48,52)' }}
                                             />
                                         </div>
                                     </div>
@@ -437,16 +423,30 @@ function Dashboard() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredData.map((row, idx) => (
-                                        <tr key={idx}>
-                                            <td>{row["Identifier"]}</td>
-                                            <td>{row["Application Name"]}</td>
-                                            <td>{row["Step Name"]}</td>
-                                            <td>{row["Input Token"]?.toLocaleString()}</td>
-                                            <td>{row["Output Token"]?.toLocaleString()}</td>
-                                            <td>{row["Date & Time"]}</td>
+                                    {loading ? (
+                                        <tr>
+                                            <td colSpan={6} className="text-center text-warning">
+                                                Processing file, please wait...
+                                            </td>
                                         </tr>
-                                    ))}
+                                    ) : filteredData.length === 0 ? (
+                                        <tr>
+                                            <td colSpan={6} className="text-center text-light mt-2">
+                                                No records found
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        filteredData.map((row, idx) => (
+                                            <tr key={idx}>
+                                                <td>{row["Identifier"]}</td>
+                                                <td>{row["Application Name"]}</td>
+                                                <td>{row["Step Name"]}</td>
+                                                <td>{row["Input Token"]?.toLocaleString()}</td>
+                                                <td>{row["Output Token"]?.toLocaleString()}</td>
+                                                <td>{row["Date & Time"]}</td>
+                                            </tr>
+                                        ))
+                                    )}
                                 </tbody>
                             </table>
                         </div>
